@@ -21,8 +21,9 @@
             {% for movie in movies %}
                 <h2> {{ movie.title }} </h2>
                 <h3> {{ movie.description }} </h3>
-                <img src="{{ movie.image_url }}" >
+                <img src="{{ movie.image.url }}">
                 {% if movie.url %}
+                <br/>
                 <a href="{{ movie.url }}" > Movie Link </a>
                 {% endif %}
             {% endfor %}

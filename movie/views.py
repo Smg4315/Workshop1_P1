@@ -7,8 +7,11 @@ def home(request):
     #return HttpResponse('<H1> Welcome to the Movie Reviews Home Page! </H1>')
     #return render(request, 'home.html')
     #return render(request, 'home.html',  {'name':'Simón Mazo Gómez'})
-    searchtearm= request.GET.get('search') 
-    movies = Movie.objects.all()
+    searchtearm= request.GET.get('searchMovie') 
+    if searchtearm:
+        movies = Movie.objects.filter(title__icontains=searchtearm)
+    else:
+        movies = Movie.objects.all()
     return render(request, 'home.html', {'searchTerm': searchtearm, 'movies': movies })
 
 
