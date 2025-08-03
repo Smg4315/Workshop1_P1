@@ -1,2 +1,32 @@
-<h1> Welcome to the Movie Reviews Home Page!, {{name}} </h1>
-<h2> This is the full home page content. </h2>
+<html5>
+
+  <head>
+    <title>Movie Reviews Home</title>
+  </head>
+
+  <body>
+
+    <div class ="container">
+        <form action="">
+            <div class="mb-3">
+                <label for="searchMovie" class="form-label">
+                    Search for a movie:
+                </label>
+                <input type="text" name="searchMovie" class="form-control" placeholder="Enter movie title">
+            </div>
+            <button type="submit" class="btn btn-primary"> Search </button>
+        </form>
+
+        <p> Searching for {{ searchTerm }} </p>
+            {% for movie in movies %}
+                <h2> {{ movie.title }} </h2>
+                <h3> {{ movie.description }} </h3>
+                <img src="{{ movie.image_url }}" >
+                {% if movie.url %}
+                <a href="{{ movie.url }}" > Movie Link </a>
+                {% endif %}
+            {% endfor %}
+        <br/>
+    </div>
+  </body>
+</html5>
