@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class ="container">
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="prompt" class="form-label">
+                <br>
+                <h1 align= "center"> Get Movie Recommendations: </h1>
+            </label>
+            <input type="text" name="prompt" class="form-control" placeholder="Enter movie prompt">
+      </div>
+        <button type="submit" class="btn btn-primary"> Get Recommendations </button>
+    </form>
+    <p> Searching for {{ prompt }} </p>
+
+      <div class = "row row-cols-1 row-cols-md-3 g-4">
+        {% if result %}
+            <div class="col">
+                <div class="card">
+                    <img src="{{ result.image.url }}" class="card-img-top" alt="{{ result.title }}" style="max-height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ result.title }}</h5>
+                      <p class="card-text">{{ result.description }}</p>
+                        <p class="card-text"> Genre: {{ result.genre }} </p>
+                        <p class="card-text"> Year: {{ result.year }} </p> 
+                        {% if result.url %}
+                    <br/>
+                    <a href="{{ result.url }}" class = "btn btn-primary"> Movie Link </a>
+                    <br/>
+                  {% endif %}
+                </div>
+            </div>
+        {% elif prompt %}
+            <div class="col">
+                <p>No movie found for your search. Please try a different prompt.</p>
+            </div>
+        {% endif %}
+      </div>
+    <br/>
+{% endblock content %}
