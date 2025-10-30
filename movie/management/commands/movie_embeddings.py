@@ -27,8 +27,6 @@ class Command(BaseCommand):
         for movie in Movie.objects.all():
             embedding_vector = np.frombuffer(movie.emb, dtype=np.float32)
             print(movie.title, embedding_vector[:5])  # Muestra los primeros valores
-
-        return
     
         # ✅ Iterate through movies and generate embeddings
         for movie in movies:
